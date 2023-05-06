@@ -1,5 +1,5 @@
 Compiler Design Project on - 
-“Arithmetic Expression validator and Evaluator”
+“Mathematical-expression-resolver”
 
 
 TOOLS USED 
