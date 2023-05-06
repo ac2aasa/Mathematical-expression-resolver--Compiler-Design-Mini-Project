@@ -1,58 +1,44 @@
-Compiler Design Project on - 
-“ Mathematical Expression Resolver ”
+# Mathematical Expression Resolver
 
+This is a compiler design project for resolving mathematical expressions. The project is designed to take input in the form of an arithmetic expression, parse it, and evaluate it. The project uses the Lex and Yacc tools for lexical analysis and parsing.
 
-TOOLS USED 
+## Tools Used
+1. Lex - a lexical analyzer generator that receives a set of user-defined patterns and scans the source code to return tokens.
+2. Yacc - a parser generator that receives user grammar and generates C source code for the parser.
 
-LEX
-The Lex tool receives at the input a set of user defined patterns that it uses to scan the source code. Each time the source code matches one of the patterns a defined action is executed by Lex (one of the action is that of returning the tokens).
+## File Structure
+- `expr.l` - Lexical analyzer file
+- `expr.y` - Syntax analyzer file
+- `Makefile` - Makefile for compilation
+- `README.md` - Readme file
+- `app.exe` - Compiled executable file
 
-Lex is officially known as a "Lexical Analyzer". It’s main job is to break up an input stream into more into meaningful units, or tokens. For example, consider breaking a text file up into individual words.
-More pragmatically, Lex is a tool for automatically generating a lexer ( also known as scanner).
+## How to Run
+To run the program, follow the steps below:
+1. Compile the lexical analyzer file by running the command `lex expr.l`
+2. Compile the syntax analyzer file by running the command `yacc -d expr.y`
+3. Compile the executable file by running the command `gcc lex.yy.c y.tab.c`
+4. Run the program by running the command `./app.exe`
+5. Terminate the program with `CTRL+D`
 
-YACC
+Alternatively, you can simply run the command `make` to compile and run the program.
 
-The Yacc tool receives at the input the user grammar. Starting from this grammar it gene-rates the C source code for the parser. Yacc invokes Lex to scan the source code and uses the tokens returned by Lex to build a syntax tree. 
+## Sample Test Cases
+1. Input: `5-2*6+7`
+   - Result: Success
+   - Output: `0`
 
-YACC stands for Yet Another Compiler Compiler. Its GNU version is called Bison. YACC translates any grammar of a language into a parser for that language. Grammars for YACC are described using a variant of Backus Naur Form (BNF). A BNF grammar can be used to express context-free languages. By convention, a YACC file has the suffix .y.
+2. Input: `5-6/0+7`
+   - Result: Error (divide by zero)
+   - Output: `ERROR: Invalid Arithmetic Expression`
 
-Yacc generates a parser in file y.tab.c and an include file y.tab.h. Lex includes this file (y.tab.h) and uses the definitions for token values found in this file for the returned tokens.
+3. Input: `a-7+5`
+   - Result: Error (unrecognized token)
+   - Output: `ERROR: Invalid Arithmetic Expression`
 
+4. Input: `2-5*7/3+4-9/2`
+   - Result: Success
+   - Output: `-8`
 
-Lexical Analyser - expr.l <br>
-Syntax analyser - expr.y
-
-How to compile and run the scanner + parser ?
-lex expr.l <br>
-yacc -d expr.y <br> 
-gcc lex.yy.c y.tab.c  <br>
-./a.out <br>
-
-OR <br>
-make <br> 
-./a.out <br>
-
-Terminate the program with CTLˆD.
-
-
-The -d option causes yacc to generate definitions for tokens and place them in the file y.tab.h. 
-The main() function calls yyparse() which automatically calls yylex()
-
-
-SAMPLE TEST CASES <br>
-1). Input=5-2*6+7 <br>
-Result=success <br>
-Output=0 <br>
-
-2). Input=5-6/0+7 <br>
-Result=Error(divide by zero) <br>
-Output=ERROR: Invalid Arithmetic Expression <br>
-
-3). Input=a-7+5 <br>
-Result=Error(unrecognized token) <br>
-Output=ERROR: Invalid Arithmetic Expression <br>
-
-4). Input=2-5*7/3+4-9/2 <br>
-Result=Success <br>
-Output=-8 <br>
- 
+## Conclusion
+This project demonstrates the use of Lex and Yacc tools in designing a mathematical expression resolver. The program can parse and evaluate simple arithmetic expressions and handle errors gracefully.
